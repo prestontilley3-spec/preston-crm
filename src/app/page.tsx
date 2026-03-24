@@ -95,6 +95,13 @@ const INTEGRATIONS = [
     detail: 'Search API',
     description: 'Web search',
   },
+  {
+    name: 'ElevenLabs',
+    icon: '🎙️',
+    status: 'connected' as const,
+    detail: 'Connected',
+    description: 'AI voice & text-to-speech',
+  },
 ]
 
 const statusConfig = {

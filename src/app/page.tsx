@@ -17,6 +17,78 @@ async function getDashboardData() {
   return { openTasks, activeJobs, recentInteractions, pipelineValue, followUps }
 }
 
+const INTEGRATIONS = [
+  {
+    name: 'GitHub',
+    icon: '🐙',
+    status: 'connected' as const,
+    detail: 'prestontilley3-spec',
+    description: 'Code repos, version control',
+  },
+  {
+    name: 'Supabase',
+    icon: '🗄️',
+    status: 'connected' as const,
+    detail: 'roghzufimqhiphqpmlhu',
+    description: 'Database & backend',
+  },
+  {
+    name: 'Vercel',
+    icon: '▲',
+    status: 'connected' as const,
+    detail: 'prestontilley3-6699',
+    description: 'App deployment & hosting',
+  },
+  {
+    name: 'Cloudflare',
+    icon: '☁️',
+    status: 'connected' as const,
+    detail: 'DNS & CDN',
+    description: 'Domain, DNS, edge network',
+  },
+  {
+    name: 'Vizard',
+    icon: '🎬',
+    status: 'connected' as const,
+    detail: 'Video AI',
+    description: 'AI video creation & clips',
+  },
+  {
+    name: 'OpenAI',
+    icon: '🤖',
+    status: 'connected' as const,
+    detail: 'GPT-4o',
+    description: 'AI completions & chat',
+  },
+  {
+    name: 'Google Gemini',
+    icon: '✨',
+    status: 'connected' as const,
+    detail: 'Gemini 1.5',
+    description: 'AI generation & multimodal',
+  },
+  {
+    name: 'Anthropic',
+    icon: '🧠',
+    status: 'warning' as const,
+    detail: 'No Credits',
+    description: 'Claude AI — key set, no credits yet',
+  },
+  {
+    name: 'Google Calendar',
+    icon: '📅',
+    status: 'connected' as const,
+    detail: 'iCal synced',
+    description: 'Schedule & meeting access',
+  },
+]
+
+const statusConfig = {
+  connected: { label: 'Connected', className: 'bg-green-900/50 text-green-400 border-green-800' },
+  warning: { label: 'No Credits', className: 'bg-yellow-900/50 text-yellow-400 border-yellow-800' },
+  disconnected: { label: 'Disconnected', className: 'bg-red-900/50 text-red-400 border-red-800' },
+}
+
 export default async function Dashboard() {
   const { openTasks, activeJobs, recentInteractions, pipelineValue, followUps } = await getDashboardData()
 
@@ -88,6 +160,42 @@ export default async function Dashboard() {
             ))}
           </div>
         )}
+      </div>
+
+      {/* Connected Integrations */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <h2 className="text-lg font-semibold text-white">Connected Integrations</h2>
+            <p className="text-xs text-gray-500 mt-0.5">All APIs and services connected to Preston AI</p>
+          </div>
+          <span className="text-xs text-gray-500">
+            {INTEGRATIONS.filter((i) => i.status === 'connected').length}/{INTEGRATIONS.length} active
+          </span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {INTEGRATIONS.map((integration) => {
+            const cfg = statusConfig[integration.status]
+            return (
+              <div
+                key={integration.name}
+                className="flex items-start gap-3 bg-gray-800/50 border border-gray-700 rounded-xl p-4 hover:border-gray-600 transition-all"
+              >
+                <div className="text-2xl flex-shrink-0 mt-0.5">{integration.icon}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <p className="text-sm font-semibold text-white">{integration.name}</p>
+                    <span className={`text-xs px-2 py-0.5 rounded-full border flex-shrink-0 ${cfg.className}`}>
+                      {cfg.label}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-400 truncate">{integration.description}</p>
+                  <p className="text-xs text-gray-600 truncate mt-0.5">{integration.detail}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
 
       {/* Quick Links */}

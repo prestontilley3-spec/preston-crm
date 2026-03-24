@@ -9,6 +9,7 @@ const navItems = [
   { href: '/tile-jobs', label: 'Tile Jobs', icon: '🏗️' },
   { href: '/contacts', label: 'Contacts', icon: '👥' },
   { href: '/tasks', label: 'Tasks', icon: '✅' },
+  { href: '/memory', label: 'Memory', icon: '🧠' },
 ]
 
 export default function Sidebar() {

@@ -70,8 +70,8 @@ const INTEGRATIONS = [
   {
     name: 'Anthropic',
     icon: '🧠',
-    status: 'warning' as const,
-    detail: 'Low Credits',
+    status: 'connected' as const,
+    detail: 'Connected',
     description: 'AI (Claude models)',
   },
   {

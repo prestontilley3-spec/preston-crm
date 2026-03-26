@@ -10,6 +10,9 @@ const navItems = [
   { href: '/contacts', label: 'Contacts', icon: '👥' },
   { href: '/tasks', label: 'Tasks', icon: '✅' },
   { href: '/memory', label: 'Memory', icon: '🧠' },
+  { href: '/content', label: 'Content', icon: '📝' },
+  { href: '/accountability', label: 'Accountability', icon: '✅' },
+  { href: '/strategy', label: 'Strategy', icon: '🎯' },
 ]
 
 export default function Sidebar() {
@@ -21,7 +24,7 @@ export default function Sidebar() {
         <h1 className="text-xl font-bold text-blue-400">Preston CRM</h1>
         <p className="text-xs text-gray-500 mt-1">Personal Dashboard</p>
       </div>
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href
           return (

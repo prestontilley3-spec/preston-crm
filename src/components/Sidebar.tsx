@@ -13,6 +13,7 @@ const navItems = [
   { href: '/content', label: 'Content', icon: '📝' },
   { href: '/accountability', label: 'Accountability', icon: '✅' },
   { href: '/strategy', label: 'Strategy', icon: '🎯' },
+  { href: '/planning', label: 'Planning', icon: '📋' },
 ]
 
 export default function Sidebar() {
